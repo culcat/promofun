@@ -14,6 +14,7 @@
   .popup-content {
     background: white;
     padding: 20px;
+    width: 50%;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   }
@@ -28,3 +29,12 @@
     margin-top: 10px;
   }
   
+  .active-button {
+    background-color: #2683f0; /* Измените на цвет вашего выбора */
+  }
+  .scrollyeah__shaft {
+    display: flex; /* Устанавливаем flex-контейнер */
+    overflow: auto; /* Добавляем горизонтальную прокрутку */
+    white-space: nowrap; /* Запрещаем перенос текста на новую строку */
+    width: 70em;
+  }
