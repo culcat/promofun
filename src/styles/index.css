@@ -225,12 +225,12 @@
     user-select: none
 }
 
-.filters-popup-buttons__button--reset {
+/* .filters-popup-buttons__button--reset {
     border-width: 1px;
     border-style: solid;
     border-color: var(--filters-popup-reset-border-color);
     color: var(--filters-popup-reset-text-color)
-}
+} */
 
 .filters-popup-buttons__button--submit {
     background: var(--filters-popup-submit-background);

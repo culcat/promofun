@@ -7,12 +7,12 @@ function App() {
 
 
 return (
-  <>
- 
+  
+  <body data-theme="light-02">
  <Main/>
+ </body>
 
-
-  </>
+  
 );
 }
 
