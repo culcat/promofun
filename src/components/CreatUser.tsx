@@ -31,11 +31,8 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import HomeIcon from '@mui/icons-material/Home';
 import { DrawerHeader } from './SideMenu';
 import SideMenu from './SideMenu';
+import { Data } from 'src/types/types';
 
-
-type Data = {
-  login: string;
-};
 
 
 export default function CreateUser() {

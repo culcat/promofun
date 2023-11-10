@@ -32,20 +32,10 @@ import Button from '@mui/material/Button';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { DrawerHeader } from './SideMenu';
 import SideMenu from './SideMenu';
+import { responseType } from 'src/types/types';
+import { Data } from 'src/types/types';
 
-type Data = {
-  login: string;
-};
 
-interface responseType{
-    name: "string";
-    company: "string";
-    category: "string";
-    info: "string";
-    promo: "string";
-    url: "string";
-    deadline: "string"
-  }
 
 export default function Sidebar() {
 //   const [responseData, setResponseData] = useState<Data | null>(null);

@@ -5,11 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SideMenu from './SideMenu';
+import { FormData } from 'src/types/types';
 
-type FormData = {
-  username: string;
-  password: string;
-};
 
 const Auth: React.FC = () => {
   const {
@@ -50,7 +47,6 @@ const Auth: React.FC = () => {
 
   return (
     <div className="form">
-      <SideMenu/>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h3>Авторизация</h3>
         <div>
