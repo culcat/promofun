@@ -118,7 +118,7 @@ function Main(){
     // }, []);
     
     useEffect(() => {
-      fetch('http://31.31.196.178:8823/api')
+      fetch('http://45.155.207.232:12223/api/promo/')
         .then(response => response.json())
         .then(data => {
           setData(data);
