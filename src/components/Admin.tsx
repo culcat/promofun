@@ -40,23 +40,42 @@ import { Data } from 'src/types/types';
 export default function Sidebar() {
 //   const [responseData, setResponseData] = useState<Data | null>(null);
   const { handleSubmit, control, reset } = useForm<responseType >();
-//   const [data, setData] = useState<DocData[]>([]);
+  const [newPromo, setNewPromo] = useState<responseType>({
+    name: "",
+    company: "",
+    category: "",
+    info: "",
+    promo: "",
+    url: "",
+    deadline: "",
+  });
+  ;//   const [data, setData] = useState<DocData[]>([]);
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const [textData,setTextData] = useState('')
+  const  [succesMsg,setSuccesMsg] = useState('')
   
-  const addPromo:SubmitHandler<responseType>=async (data) => {
-    try {
-        const response = await axios.post('http://45.155.207.232:12223/api/promo', data);
-        console.log('Успешно отправлен POST-запрос', response);
-        // Очистка полей формы после успешной отправки
-        reset();
-      } catch (error) {
-        console.error('Ошибка при отправке POST-запроса', error);
-      }
-  }
+const addPromo = () => {
+  axios
+    .post('http://45.155.207.232:12223/api/promo/', newPromo)
+    .then((response) => {
+      console.log('Promo created:', response.data);
+      setSuccesMsg("Промокод успешно создан")
+      reset();
+    })
+    .catch((error) => {
+      console.error('Error creating promo:', error);
+    });
+};
 
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setNewPromo((prevPromo) => ({
+      ...prevPromo,
+      [name]: value,
+    }));
+  };
   
   
   useEffect(() => {
@@ -73,96 +92,80 @@ export default function Sidebar() {
 <SideMenu/>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
   <DrawerHeader />
-  <form onSubmit={handleSubmit(addPromo)}>
-      <Controller
-        name="name"
-        control={control}
-        render={({ field }) => (
-          <TextField
-            label="Название"
-            fullWidth
-            sx={{ marginBottom: 2,m: 1, width: '50%' }}
-            {...field}
-          />
+  <form >
+          <div>
+            <TextField
+              label="Название"
+              name="name"
+              value={newPromo.name}
+              onChange={handleInputChange}
+              fullWidth
+              sx={{ marginBottom: 2 ,m: 1, width: '50%' }}
+              
+            />
+          </div>
+          <div>
+            <TextField
+              label="Компания"
+              name="company"
+              value={newPromo.company}
+              onChange={handleInputChange}
+              fullWidth
+              sx={{ marginBottom: 2 ,m: 1, width: '50%' }}            />
+          </div>
+          <div>
+            <TextField
+              label="Категории"
+              name="category"
+              value={newPromo.category}
+              onChange={handleInputChange}
+              fullWidth
+              sx={{ marginBottom: 2 ,m: 1, width: '50%' }}            />
+          </div>
+          <div>
+            <TextField
+              label="Инфо"
+              name="info"
+              value={newPromo.info}
+              onChange={handleInputChange}
+              fullWidth
+              sx={{ marginBottom: 2 ,m: 1, width: '50%' }}            />
+          </div>
+          <div>
+            <TextField
+              label="Промо"
+              name="promo"
+              value={newPromo.promo}
+              onChange={handleInputChange}
+              fullWidth
+              sx={{ marginBottom: 2 ,m: 1, width: '50%' }}            />
+          </div>
+                 <div>
+            <TextField
+              label="Ссылка"
+              name="url"
+              value={newPromo.url}
+              onChange={handleInputChange}
+              fullWidth
+              sx={{ marginBottom: 2 ,m: 1, width: '50%' }}            />
+          </div>
+                 <div>
+            <TextField
+              label="Конец"
+              name="deadline"
+              value={newPromo.deadline}
+              onChange={handleInputChange}
+              fullWidth
+              sx={{ marginBottom: 2 ,m: 1, width: '50%' }}            />
+          </div>
+          <div><br />
+            <Button variant="contained" sx={{ marginBottom: 2 ,m: 1}} color="primary" onClick={addPromo}>
+Создать            </Button>
+          </div>
+          {succesMsg && (
+          <div style={{ color: 'green' }}>{succesMsg}</div>
         )}
-      />
-      <Controller
-        name="company"
-        control={control}
-        render={({ field }) => (
-          <TextField
-            label="Компания"
-            sx={{ marginBottom: 2,m: 1, width: '50%' }}
-            fullWidth
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        name="category"
-        control={control}
-        render={({ field }) => (
-          <TextField
-            label="Категория"
-            sx={{ marginBottom: 2,m: 1, width: '50%' }}
-            fullWidth
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        name="info"
-        control={control}
-        render={({ field }) => (
-          <TextField
-            label="Информация"
-            sx={{ marginBottom: 2,m: 1, width: '50%' }}
-            fullWidth
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        name="promo"
-        control={control}
-        render={({ field }) => (
-          <TextField
-            label="Промокод"
-            sx={{ marginBottom: 2,m: 1, width: '50%' }}
-            fullWidth
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        name="url"
-        control={control}
-        render={({ field }) => (
-          <TextField
-            label="URL"
-            sx={{ marginBottom: 2,m: 1, width: '50%' }}
-            fullWidth
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        name="deadline"
-        control={control}
-        render={({ field }) => (
-          <TextField
-            label="Конец"
-            sx={{ marginBottom: 2,m: 1, width: '50%' }}
-            fullWidth
-            {...field}
-          />
-        )}
-      />
-<br />
-      <Button type='submit'  sx={{ marginBottom: 2,m: 1, width: '50%' }} variant="contained" color="primary">
-        Создать
-      </Button>
-    </form>
+        </form>
 </Box>
     </Box>
   );

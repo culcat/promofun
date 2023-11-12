@@ -11,7 +11,7 @@ import copy from '../images/icons8-copy-32.png'
 import lt from '../images/ygbp_offer_logo_79e92ccf7a94a941624ebb0225378b28.jpeg'
 import sm from '../images/ygbp_offer_logo_e085fd6f09a5bdeed644ca8a97d42907.jpeg'
 import { useSwipeable } from 'react-swipeable';
-
+import { Link } from 'react-router-dom';
 
 function Popup({ jsonData, isOpen, onClose }) {
   if (!isOpen) return null;
@@ -536,8 +536,8 @@ function Main(){
           className="actions-head__logo"
           src={logo}
         />
-        <h1 className="actions-head__caption">
-          Актуальные промокоды скидки купоны акции 2023
+        <h1 className="actions-head__caption"><Link to='admin/'>
+          Актуальные промокоды скидки купоны акции 2023</Link>
         </h1>
       </div>
       <div className="actions-head__social">

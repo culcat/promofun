@@ -30,13 +30,11 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
-
+import { Data } from 'src/types/types';
 
 const drawerWidth = 240;
 
-type Data = {
-  login: string;
-};
+
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -111,9 +109,7 @@ const SideMenu = () => {
     const navigate = useNavigate()
     const icons = [
         <HomeIcon />,
-        <SendIcon />,
         <PersonAddAltIcon />,
-        <ApartmentIcon />,
         <LogoutIcon />,
       ];
    
@@ -130,7 +126,7 @@ const SideMenu = () => {
       
       const handleSettings = () => {
         localStorage.removeItem('token')
-        navigate('/');
+        navigate('/admin/auth');
       };
         
         const handleChanges = () => {
@@ -174,7 +170,7 @@ const SideMenu = () => {
         </DrawerHeader>
         <Divider />
         <List>
-  {["Главная", 'Рассылка', 'Создать пользователя', 'Подразделения', 'Выход'].map((text, index) => (
+  {["Главная",  'Создать пользователя', 'Выход'].map((text, index) => (
     <ListItem key={text} disablePadding sx={{ display: 'block' }}>
       <ListItemButton
         sx={{

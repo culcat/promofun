@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import SideMenu from './SideMenu';
 import { FormData } from 'src/types/types';
 
-
 const Auth: React.FC = () => {
   const {
     handleSubmit,
