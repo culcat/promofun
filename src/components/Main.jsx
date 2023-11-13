@@ -98,42 +98,40 @@ function Main(){
     const [isFilterOpen,setFilterOpen] = useState(false)
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [data, setData] = useState([]);
-    // useEffect(() => {
-    //   axios.get('http://31.31.196.178:8822/api', {
-    //     httpsAgent: undefined, // Убираем верификацию по SSL
-    //   })
-    //   .then(response => {
-    //     setData(response.data); 
-    //     const allCards = response.data;
-    
-    //     const letualCards = allCards.filter(card => card.company === 'ЛЭТУАЛЬ');
-    //     const sberMarketCards = allCards.filter(card => card.company === 'СберМаркет');
-    
-    //     setLetualCount(letualCards.length);
-    //     setSberMarketCount(sberMarketCards.length);
-    //   })
-    //   .catch(error => {
-    //     console.error('Error fetching data:', error);
-    //   });
-    // }, []);
-    
     useEffect(() => {
-      fetch('http://45.155.207.232:12223/api/promo/')
-        .then(response => response.json())
-        .then(data => {
-          setData(data);
-          const allCards = data;
+      axios.get('http://31.31.196.178:8822/api',  { httpsAgent: { rejectUnauthorized: false } })
+      .then(response => {
+        setData(response.data); 
+        const allCards = response.data;
     
-          const letualCards = allCards.filter(card => card.company === 'ЛЭТУАЛЬ');
-          const sberMarketCards = allCards.filter(card => card.company === 'СберМаркет');
+        const letualCards = allCards.filter(card => card.company === 'ЛЭТУАЛЬ');
+        const sberMarketCards = allCards.filter(card => card.company === 'СберМаркет');
     
-          setLetualCount(letualCards.length);
-          setSberMarketCount(sberMarketCards.length);
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-        });
+        setLetualCount(letualCards.length);
+        setSberMarketCount(sberMarketCards.length);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
     }, []);
+    
+    // useEffect(() => {
+    //   fetch('http://45.155.207.232:12223/api/promo/')
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       setData(data);
+    //       const allCards = data;
+    
+    //       const letualCards = allCards.filter(card => card.company === 'ЛЭТУАЛЬ');
+    //       const sberMarketCards = allCards.filter(card => card.company === 'СберМаркет');
+    
+    //       setLetualCount(letualCards.length);
+    //       setSberMarketCount(sberMarketCards.length);
+    //     })
+    //     .catch(error => {
+    //       console.error('Error fetching data:', error);
+    //     });
+    // }, []);
     
 
     const [ checkbox, setCheckbox ] = useState(false);
