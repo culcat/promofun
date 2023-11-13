@@ -99,7 +99,7 @@ function Main(){
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [data, setData] = useState([]);
     useEffect(() => {
-      axios.get('http://31.31.196.178:8822/api',  { httpsAgent: { rejectUnauthorized: false } })
+      axios.get('http://45.155.207.232:12223/api/promo/',  { httpsAgent: { rejectUnauthorized: false } })
       .then(response => {
         setData(response.data); 
         const allCards = response.data;
