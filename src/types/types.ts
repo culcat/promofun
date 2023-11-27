@@ -15,3 +15,13 @@ export type responseType={
 export type Data = {
     login: string;
   };
+
+export default interface jsonData{
+  img: string;
+  logo: string;
+  company: string;
+  category: string;
+  deadline: string;
+  name: string;
+  promo_id: number;
+}

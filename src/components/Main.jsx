@@ -114,26 +114,10 @@ function Main(){
         console.error('Error fetching data:', error);
       });
     }, []);
-    
-    // useEffect(() => {
-    //   fetch('http://45.155.207.232:12223/api/promo/')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       setData(data);
-    //       const allCards = data;
-    
-    //       const letualCards = allCards.filter(card => card.company === 'ЛЭТУАЛЬ');
-    //       const sberMarketCards = allCards.filter(card => card.company === 'СберМаркет');
-    
-    //       setLetualCount(letualCards.length);
-    //       setSberMarketCount(sberMarketCards.length);
-    //     })
-    //     .catch(error => {
-    //       console.error('Error fetching data:', error);
-    //     });
-    // }, []);
-    
 
+  
+    
+   
     const [ checkbox, setCheckbox ] = useState(false);
     const [ filteredPosts, setFilteredPosts ] = useState([]);
     const [searchText, setSearchText] = useState("");
@@ -175,11 +159,8 @@ function Main(){
   };
   
    
-  const handleSearchSubmit = () => {
-    // Выполняйте запрос к API с использованием значения searchTerm
-    // Например, fetch(`API_URL?q=${searchTerm}`)
-    // После получения результатов запроса обновите searchResults
-  };
+  
+  
     const [filter, setFilter] = useState(null);
     const [activeButton, setActiveButton] = useState(null);
     
@@ -534,8 +515,8 @@ function Main(){
           className="actions-head__logo"
           src={logo}
         />
-        <h1 className="actions-head__caption"><Link to='admin/'>
-          Актуальные промокоды скидки купоны акции 2023</Link>
+        <h1 className="actions-head__caption">
+          Актуальные промокоды скидки купоны акции 2023
         </h1>
       </div>
       <div className="actions-head__social">
@@ -1028,52 +1009,16 @@ className={activeFilButton.includes("Товары для животных") ? "a
                               Узнать больше
                           </button>
                       </div>
+                    
                   </div>
+                  
+                  
              </div>
 
          ))}  
          
          
-         {filteredData.map((jsonData, index) => (
-
-              <div className="actions-grid__col">
-            
-                  <div className="actions-grid-item">
-                      <div
-                          className="actions-grid-item__image"
-                          style={{ backgroundImage: `url(${jsonData.img})` }}
-                      ></div>
-                      {/* <img src={jsonData.img} ClassName="actions-grid-item__image" /> */}
-                      <div className="actions-grid-item__content">
-                          <div className="actions-grid-item__main">
-                              <div className="actions-grid-item__brand">
-                                  
-                                  <img className="actions-grid-item__logo" src={jsonData.logo} />
-                                  <div className="actions-grid-item__brand-info">
-                                      <h4 className="actions-grid-item__name">{jsonData.company}</h4>
-                                      <p className="actions-grid-item__category">
-                                          {jsonData.category}
-                                      </p>
-                                  </div>
-                              </div>
-                              <span className="actions-grid-item__deadline">
-                                  {jsonData.deadline}{" "}
-                              </span>
-                          </div>
-                          <p className="actions-grid-item__info">
-                              {jsonData.name}
-                          </p>
-                          <button
-                              className="actions-grid-item__button"
-                              data-toggle-popup={932488}
-                              onClick={() => togglePopup(index)
-                              }                          >
-                              Узнать больше
-                          </button>
-                      </div>
-                  </div>
-             </div>
-         ))} 
+     
          </div></>
             <Popup
         jsonData={filteredData[selectedCard]}

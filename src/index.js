@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 document.title = 'Актуальные промокоды скидки купоны акции 2023'
 root.render(

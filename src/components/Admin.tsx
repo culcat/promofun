@@ -32,7 +32,7 @@ import Button from '@mui/material/Button';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { DrawerHeader } from './SideMenu';
 import SideMenu from './SideMenu';
-import { responseType } from 'src/types/types';
+import jsonData, { responseType } from 'src/types/types';
 import { Data } from 'src/types/types';
 
 
@@ -40,6 +40,7 @@ import { Data } from 'src/types/types';
 export default function Sidebar() {
 //   const [responseData, setResponseData] = useState<Data | null>(null);
   const { handleSubmit, control, reset } = useForm<responseType >();
+  const [data, setData] = useState([]);
   const [newPromo, setNewPromo] = useState<responseType>({
     name: "",
     company: "",
@@ -54,7 +55,18 @@ export default function Sidebar() {
   const navigate = useNavigate();
   const [textData,setTextData] = useState('')
   const  [succesMsg,setSuccesMsg] = useState('')
-  
+  const handleDelete = async(id:number)=>{
+      
+    try{
+    const response = axios.delete('http://45.155.207.232:12223/api/promo/'+id)
+    console.log(response);
+
+
+     }
+    catch(error){
+      console.error(error);
+    }
+    }
 const addPromo = () => {
   axios
     .post('http://45.155.207.232:12223/api/promo/', newPromo)
@@ -67,7 +79,17 @@ const addPromo = () => {
       console.error('Error creating promo:', error);
     });
 };
+useEffect(() => {
+  axios.get('http://45.155.207.232:12223/api/promo/',  { httpsAgent: { rejectUnauthorized: false } })
+  .then(response => {
+    setData(response.data); 
+    const allCards = response.data;
 
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+}, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -166,6 +188,54 @@ const addPromo = () => {
           <div style={{ color: 'green' }}>{succesMsg}</div>
         )}
         </form>
+        <div className="actions-grid">
+      {data.map((jsonData:jsonData) => (
+
+              <div className="actions-grid__col">
+            
+                  <div className="actions-grid-item">
+                      <div
+                          className="actions-grid-item__image"
+                          style={{ backgroundImage: `url(${jsonData.img})` }}
+                      ></div>
+                      {/* <img src={jsonData.img} ClassName="actions-grid-item__image" /> */}
+                      <div className="actions-grid-item__content">
+                          <div className="actions-grid-item__main">
+                              <div className="actions-grid-item__brand">
+                                  
+                                  <img className="actions-grid-item__logo" src={jsonData.logo} />
+                                  <div className="actions-grid-item__brand-info">
+                                      <h4 className="actions-grid-item__name">{jsonData.company}</h4>
+                                      <p className="actions-grid-item__category">
+                                          {jsonData.category}
+                                      </p>
+                                  </div>
+                              </div>
+                              <span className="actions-grid-item__deadline">
+                                  {jsonData.deadline}{" "}
+                              </span>
+                          </div>
+                          <p className="actions-grid-item__info">
+                              {jsonData.name}
+                          </p>
+                          <button
+                              className="actions-grid-item__button"
+                              data-toggle-popup={932488}
+                              onClick={() => handleDelete(jsonData.promo_id)
+                              }                          >
+                             Удалить
+                          </button>
+                      </div>
+                    
+                  </div>
+                 
+             </div>
+
+         ))}  
+         
+         
+     
+         </div>
 </Box>
     </Box>
   );
