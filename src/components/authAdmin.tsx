@@ -16,27 +16,49 @@ const Auth: React.FC = () => {
 
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
+  const [accData,setAccData] = useState<string|null>(null)
 
   useEffect(() => {
-    // Проверить, есть ли токен в локальном хранилище при загрузке компонента
+    // Check for the token in local storage when the component loads
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
-      navigate('/admin'); // Перенаправить на страницу /admin, если токен найден
+      navigate('/admin'); // Redirect to /admin if the token is found
     }
   }, [navigate]);
 
+  const fetchData = async (token: string) => {
+    try {
+      const response = await axios.get(
+          `http://45.155.207.232:12223/api/user/get?token=${token}`,
+          { httpsAgent: { rejectUnauthorized: false } }
+      );
+      setAccData(response.data);
+      console.log(response.data);
+      localStorage.setItem('id', response.data.id);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      const response = await axios.get('http://45.155.207.232:12223/api/user/auth', {
-        params: {
-          login: data.username,
-          password: data.password,
-        },
-      });
+      const response = await axios.get(
+          'http://45.155.207.232:12223/api/user/auth',
+          {
+            params: {
+              login: data.username,
+              password: data.password,
+            },
+          }
+      );
 
       if (response.status === 200) {
         localStorage.setItem('token', response.data.token);
-        navigate('/admin');
+        const storedToken = localStorage.getItem('token');
+        if (storedToken) {
+          fetchData(storedToken);
+          navigate('/admin');
+        }
       }
     } catch (error) {
       console.error('Authentication error', error);

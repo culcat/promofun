@@ -1,3 +1,44 @@
+.grid-item {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  float: left;
+}
+
+.card {
+  box-sizing: border-box;
+
+  border-radius: 12px;
+  overflow: hidden;
+  height: max-content;
+  background-color: white;
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.card-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  color: #333;
+}
+
+.delete-button {
+  background-color: #2683f0;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Gilroy',Helvetica,Arial,sans-serif;
+}
+
+
+
 .popup {
   position: fixed;
   top: 0;

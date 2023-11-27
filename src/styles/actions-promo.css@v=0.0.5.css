@@ -771,7 +771,16 @@ body[data-theme=dark-02],body[data-theme=dark-03],body[data-theme=dark-04],body[
 .actions-head__caption {
     margin: 0;
     font-size: 26px
+}  .actions-head__caption {
+       margin: 0;
+       font-size: 26px;
+   }
+
+.actions-head__blog-button {
+    display: block; /* Ensure the button takes the full width */
+    margin-top: 10px; /* Adjust the margin as needed */
 }
+
 
 .actions-head__social {
     flex-shrink: 0;

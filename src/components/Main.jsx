@@ -12,6 +12,7 @@ import lt from '../images/ygbp_offer_logo_79e92ccf7a94a941624ebb0225378b28.jpeg'
 import sm from '../images/ygbp_offer_logo_e085fd6f09a5bdeed644ca8a97d42907.jpeg'
 import { useSwipeable } from 'react-swipeable';
 import { Link } from 'react-router-dom';
+import Blog from "./Blog";
 
 function Popup({ jsonData, isOpen, onClose }) {
   if (!isOpen) return null;
@@ -512,26 +513,37 @@ function Main(){
     <div className="actions-head">
       <div className="actions-head__title">
         <img
-          className="actions-head__logo"
-          src={logo}
+            className="actions-head__logo"
+            src={logo}
+            alt="Logo"
         />
+
         <h1 className="actions-head__caption">
           Актуальные промокоды скидки купоны акции 2023
         </h1>
+
+
+          <div
+              className="actions-head__social"
+
+          > <Link to="/blog" >
+            <span>  Перейти к блогу</span></Link></div>
+
       </div>
+
       <div className="actions-head__social">
-        <span>Больше акций тут:</span>
+        <span >Больше акций тут:</span>
         <div className="actions-footer-socials actions-footer-socials--head">
           <a
-            className="actions-footer-socials__link"
-            href="https://t.me/+i0Q1GHHKofUwYjhi"
-            target="_blank"
-            onclick="ym(93807298,'reachGoal','telegram');"
+              className="actions-footer-socials__link"
+              href="https://t.me/+i0Q1GHHKofUwYjhi"
+              target="_blank"
           >
-           <img src={tg} width={20} height={20} alt="" />
+            <img src={tg} width={20} height={20} alt="Telegram" />
           </a>
         </div>
       </div>
+
       <button
         className="actions-head__button actions-head__button--filter"
         data-toggle-popup="filters"
@@ -1069,7 +1081,7 @@ className={activeFilButton.includes("Товары для животных") ? "a
         </div>
     </footer>
     </div>
-  <script src="../js/actions-promo.js@v=0.0.4"></script>
+
     </div>
   );
 };

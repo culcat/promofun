@@ -16,13 +16,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import axios from 'axios';
-import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
-import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import { Navigate, useNavigate } from 'react-router-dom';
 import SettingsIcon from '@mui/icons-material/Settings'; 
 import SendIcon from '@mui/icons-material/Send';
@@ -31,7 +24,8 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Data } from 'src/types/types';
-
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import NewspaperRoundedIcon from '@mui/icons-material/NewspaperRounded';
 const drawerWidth = 240;
 
 
@@ -110,6 +104,9 @@ const SideMenu = () => {
     const icons = [
         <HomeIcon />,
         <PersonAddAltIcon />,
+        <DeleteForeverOutlinedIcon/>,
+        <DeleteForeverOutlinedIcon/>,
+        <NewspaperRoundedIcon/>,
         <LogoutIcon />,
       ];
    
@@ -123,9 +120,20 @@ const SideMenu = () => {
       const handleCreateUser = () => {
         navigate('/admin/createuser');
       };
-      
-      const handleSettings = () => {
+    const handleCreateBlog= () => {
+        navigate('/admin/blog');
+    };
+    const handleBlogDelete= () => {
+        navigate('/admin/blog/delete');
+    };
+    const handleDelete = () => {
+        navigate('/admin/delete');
+    };
+
+    const handleSettings = () => {
         localStorage.removeItem('token')
+        localStorage.removeItem('id')
+
         navigate('/admin/auth');
       };
         
@@ -170,7 +178,7 @@ const SideMenu = () => {
         </DrawerHeader>
         <Divider />
         <List>
-  {["Главная",  'Создать пользователя', 'Выход'].map((text, index) => (
+  {["Главная",  'Создать пользователя', 'Удалить карточку','Удалить статью','Создать статью','Выход'].map((text, index) => (
     <ListItem key={text} disablePadding sx={{ display: 'block' }}>
       <ListItemButton
         sx={{
@@ -178,7 +186,7 @@ const SideMenu = () => {
           justifyContent: open ? 'initial' : 'center',
           px: 2.5,
         }}
-        onClick={text === 'Главная' ? handleHome : text === 'Создать пользователя' ? handleCreateUser  : text === 'Выход' ? handleSettings : text === 'Рассылка' ? handleChanges  : text === 'Подразделения' ? handleDivision : undefined }
+        onClick={text === 'Главная' ? handleHome : text === 'Создать пользователя' ? handleCreateUser  : text === 'Выход' ? handleSettings : text === 'Удалить карточку' ? handleDelete : text === 'Удалить статью' ? handleBlogDelete  : text === 'Создать статью' ? handleCreateBlog : undefined }
         >
         <ListItemIcon
           sx={{
