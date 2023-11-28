@@ -19,7 +19,8 @@ export type Data = {
 
 
 export default interface blog{
-    header:string;
+    article_id:string;
+    headers:string;
     text:string;
     user_id:string;
 }

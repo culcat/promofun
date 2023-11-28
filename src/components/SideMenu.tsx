@@ -26,6 +26,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { Data } from 'src/types/types';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import NewspaperRoundedIcon from '@mui/icons-material/NewspaperRounded';
+import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
 const drawerWidth = 240;
 
 
@@ -105,7 +106,7 @@ const SideMenu = () => {
         <HomeIcon />,
         <PersonAddAltIcon />,
         <DeleteForeverOutlinedIcon/>,
-        <DeleteForeverOutlinedIcon/>,
+        <CreateRoundedIcon/>,
         <NewspaperRoundedIcon/>,
         <LogoutIcon />,
       ];
@@ -133,6 +134,7 @@ const SideMenu = () => {
     const handleSettings = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('id')
+        localStorage.removeItem('login')
 
         navigate('/admin/auth');
       };
@@ -178,7 +180,7 @@ const SideMenu = () => {
         </DrawerHeader>
         <Divider />
         <List>
-  {["Главная",  'Создать пользователя', 'Удалить карточку','Удалить статью','Создать статью','Выход'].map((text, index) => (
+  {["Главная",  'Создать пользователя', 'Удалить карточку','Редактировать статью','Создать статью','Выход'].map((text, index) => (
     <ListItem key={text} disablePadding sx={{ display: 'block' }}>
       <ListItemButton
         sx={{
@@ -186,7 +188,7 @@ const SideMenu = () => {
           justifyContent: open ? 'initial' : 'center',
           px: 2.5,
         }}
-        onClick={text === 'Главная' ? handleHome : text === 'Создать пользователя' ? handleCreateUser  : text === 'Выход' ? handleSettings : text === 'Удалить карточку' ? handleDelete : text === 'Удалить статью' ? handleBlogDelete  : text === 'Создать статью' ? handleCreateBlog : undefined }
+        onClick={text === 'Главная' ? handleHome : text === 'Создать пользователя' ? handleCreateUser  : text === 'Выход' ? handleSettings : text === 'Удалить карточку' ? handleDelete : text === 'Редактировать статью' ? handleBlogDelete  : text === 'Создать статью' ? handleCreateBlog : undefined }
         >
         <ListItemIcon
           sx={{

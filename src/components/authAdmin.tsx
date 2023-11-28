@@ -35,6 +35,7 @@ const Auth: React.FC = () => {
       setAccData(response.data);
       console.log(response.data);
       localStorage.setItem('id', response.data.id);
+      localStorage.setItem('login', response.data.login);
     } catch (error) {
       console.error('Error fetching data:', error);
     }

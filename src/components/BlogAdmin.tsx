@@ -20,11 +20,12 @@ export default function Sidebar() {
 
     ;//   const [data, setData] = useState<DocData[]>([]);
     const token = localStorage.getItem('token');
+    const id = localStorage.getItem('id')
     const navigate = useNavigate();
     const [textData,setTextData] = useState('')
     const  [succesMsg,setSuccesMsg] = useState('')
-    const id = localStorage.getItem('id');
-    const [newArticle, setNewArticle] = useState<blog>({
+    const login = localStorage.getItem('login');
+    const [newArticle, setNewArticle] = useState({
         header: "",
         text: "",
         user_id: ""
